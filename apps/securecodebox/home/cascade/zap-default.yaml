@@ -1,0 +1,136 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: zap-baseline-automation-framework-config
+data:
+  automation.yaml: |-
+    env:
+      contexts :
+        - name: baseline-config
+          urls: ["${TARGET_URL}"]
+    jobs:
+      - type: spider
+        parameters:
+          context: baseline-config
+          maxDuration: 3
+      - type: passiveScan-wait
+        parameters:
+          maxDuration: 3
+      - type: activeScan
+        parameters:
+          context: full-context
+          maxDuration: 15
+          maxRuleDurationInMins: 3
+          threadPerHost: 2
+      - type: report
+        parameters:
+          template: traditional-xml
+          reportDir: /home/securecodebox/
+          reportFile: zap-results
+        risks:
+          - high
+          - medium
+          - low
+
+---
+apiVersion: cascading.securecodebox.io/v1
+kind: CascadingRule
+metadata:
+  name: zap-http
+  labels:
+    securecodebox.io/invasive: non-invasive
+    securecodebox.io/intensive: medium
+    cascading.securecodebox.io/chain: zap-base
+spec:
+  matches:
+    anyOf:
+      - category: "Open Port"
+        attributes:
+          state: open
+          protocol: tcp
+          service: http
+      - category: "Open Port"
+        attributes:
+          port: 80
+          state: open
+          protocol: tcp
+      - category: "Open Port"
+        attributes:
+          port: 3000
+          state: open
+          protocol: tcp
+      - category: "Open Port"
+        attributes:
+          port: 8080
+          state: open
+          protocol: tcp
+  scanSpec:
+    scanType: zap-automation-framework
+    parameters:
+      - "-autorun"
+      - "/home/securecodebox/scb-automation/automation.yaml"
+    volumeMounts:
+      - name: zap-automation-framework-baseline-config  
+        mountPath: /home/securecodebox/scb-automation/automation.yaml
+        subPath: automation.yaml
+    volumes:
+      - name: zap-automation-framework-baseline-config  
+        configMap:
+          name: zap-automation-framework-baseline-config  
+    env: 
+      - name: TARGET_URL
+        value: "http://{{$.hostOrIP}}:{{attributes.port}}"
+---
+apiVersion: cascading.securecodebox.io/v1
+kind: CascadingRule
+metadata:
+  name: zap-https
+  labels:
+    securecodebox.io/invasive: non-invasive
+    securecodebox.io/intensive: medium
+    cascading.securecodebox.io/chain: zap-base
+spec:
+  matches:
+    anyOf:
+      - category: "Open Port"
+        attributes:
+          state: open
+          protocol: tcp
+          service: https
+      - category: "Open Port"
+        attributes:
+          port: 443
+          state: open
+          protocol: tcp
+      - category: "Open Port"
+        attributes:
+          port: 8443
+          state: open
+          protocol: tcp
+      - category: "Open Port"
+        attributes:
+          port: 9443
+          state: open
+          protocol: tcp
+      - category: "Open Port"
+        attributes:
+          port: 10443
+          state: open
+          protocol: tcp
+  scanSpec:
+    scanType: zap-automation-framework
+    parameters:
+      - "-autorun"
+      - "/home/securecodebox/scb-automation/automation.yaml"
+    volumeMounts:
+      - name: zap-automation-framework-baseline-config  
+        mountPath: /home/securecodebox/scb-automation/automation.yaml
+        subPath: automation.yaml
+    volumes:
+      - name: zap-automation-framework-baseline-config  
+        configMap:
+          name: zap-automation-framework-baseline-config  
+    env: 
+      - name: TARGET_URL
+        value: "http://{{$.hostOrIP}}:{{attributes.port}}"

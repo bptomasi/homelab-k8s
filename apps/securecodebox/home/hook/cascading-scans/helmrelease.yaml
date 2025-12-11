@@ -1,0 +1,15 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: cascading-scans
+spec:
+  chartRef:
+    kind: OCIRepository
+    name: cascading-scans
+  interval: 24h0m0s
+  values:
+    hook:
+      image:
+        tag: 5.1.0
+      ttlSecondsAfterFinished: 10

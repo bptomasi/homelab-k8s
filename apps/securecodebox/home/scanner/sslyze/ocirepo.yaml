@@ -1,0 +1,10 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: sslyze
+spec:
+  interval: 24h0m0s
+  url: oci://ghcr.io/securecodebox/helm/sslyze
+  ref:
+    tag: 5.1.0

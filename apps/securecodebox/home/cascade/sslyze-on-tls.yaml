@@ -1,0 +1,68 @@
+---
+apiVersion: cascading.securecodebox.io/v1
+kind: CascadingRule
+metadata:
+  name: sslyze-on-tls
+  labels:
+    securecodebox.io/invasive: non-invasive
+    securecodebox.io/intensive: medium
+    cascading.securecodebox.io/chain: sslyze
+spec:
+  matches:
+    anyOf:
+      - category: "Open Port"
+        attributes:
+          state: open
+          protocol: tcp
+          service: https
+      - category: "Open Port"
+        attributes:
+          port: 443
+          state: open
+          protocol: tcp
+      - category: "Open Port"
+        attributes:
+          port: 445
+          state: open
+          protocol: tcp
+      - category: "Open Port"
+        attributes:
+          port: 465
+          state: open
+          protocol: tcp
+      - category: "Open Port"
+        attributes:
+          port: 587
+          state: open
+          protocol: tcp
+      - category: "Open Port"
+        attributes:
+          port: 993
+          state: open
+          protocol: tcp
+      - category: "Open Port"
+        attributes:
+          port: 995
+          state: open
+          protocol: tcp
+      - category: "Open Port"
+        attributes:
+          port: 8443
+          state: open
+          protocol: tcp
+      - category: "Open Port"
+        attributes:
+          port: 9443
+          state: open
+          protocol: tcp
+      - category: "Open Port"
+        attributes:
+          port: 10443
+          state: open
+          protocol: tcp
+  scanSpec:
+    scanType: sslyze
+    parameters:
+      - "--regular"
+      - "{{$.hostOrIP}}:{{attributes.port}}"
+

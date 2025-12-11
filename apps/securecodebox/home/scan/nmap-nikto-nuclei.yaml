@@ -1,0 +1,35 @@
+---
+apiVersion: execution.securecodebox.io/v1
+kind: ScheduledScan
+metadata:
+  name: nmap-nikto-nuclei
+spec:
+  interval: 86700h
+  scanSpec:
+    scanType: nmap
+    resourceMode: namespaceLocal
+    parameters:
+      - "-Pn"
+      - "-sS"
+      - "-T4"
+      - "-n"
+      - "192.168.15.0/24"
+      - "-v"
+    cascades:
+      inheritLabels: false
+      inheritAnnotations: false
+      matchExpressions:
+        - key: securecodebox.io/intensive
+          operator: In
+          values:
+            - light
+            - medium
+            - heavy
+        - key: cascading.securecodebox.io/chain
+          operator: In
+          values:
+            - deep-nikto
+            - deep-nuclei
+            - fast-nikto
+            - fast-nuclei
+            - sslyze

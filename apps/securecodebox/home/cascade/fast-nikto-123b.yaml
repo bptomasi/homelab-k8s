@@ -1,0 +1,98 @@
+---
+apiVersion: cascading.securecodebox.io/v1
+kind: CascadingRule
+metadata:
+  name: fast-nikto-123b-http
+  labels:
+    securecodebox.io/invasive: non-invasive
+    securecodebox.io/intensive: light
+    cascading.securecodebox.io/chain: fast-nikto
+spec:
+  matches:
+    anyOf:
+      - category: "Open Port"
+        attributes:
+          state: open
+          protocol: tcp
+          service: http
+      - category: "Open Port"
+        attributes:
+          port: 80
+          state: open
+          protocol: tcp
+      - category: "Open Port"
+        attributes:
+          port: 3000
+          state: open
+          protocol: tcp
+      - category: "Open Port"
+        attributes:
+          port: 8080
+          state: open
+          protocol: tcp
+  scanLabels:
+    scan.securecodebox.io/cascade-from: "{{metadata.name}}"
+  scanAnnotations:
+    scan.securecodebox.io/finding-category: "{{category}}"
+  scanSpec:
+    scanType: nikto
+    parameters:
+      - "-h"
+      - "{{$.hostOrIP}}"
+      - "-port"
+      - "{{attributes.port}}"
+      - "-Tuning"
+      - "123b"
+      - "-nointeractive"
+---
+apiVersion: cascading.securecodebox.io/v1
+kind: CascadingRule
+metadata:
+  name: fast-nikto-123b-https
+  labels:
+    securecodebox.io/invasive: non-invasive
+    securecodebox.io/intensive: light
+    cascading.securecodebox.io/chain: fast-nikto
+spec:
+  matches:
+    anyOf:
+      - category: "Open Port"
+        attributes:
+          state: open
+          protocol: tcp
+          service: https
+      - category: "Open Port"
+        attributes:
+          port: 443
+          state: open
+          protocol: tcp
+      - category: "Open Port"
+        attributes:
+          port: 8443
+          state: open
+          protocol: tcp
+      - category: "Open Port"
+        attributes:
+          port: 9443
+          state: open
+          protocol: tcp
+      - category: "Open Port"
+        attributes:
+          port: 10443
+          state: open
+          protocol: tcp
+  scanLabels:
+    scan.securecodebox.io/cascade-from: "{{metadata.name}}"
+  scanAnnotations:
+    scan.securecodebox.io/finding-category: "{{category}}"
+  scanSpec:
+    scanType: nikto
+    parameters:
+      - "-h"
+      - "{{$.hostOrIP}}"
+      - "-port"
+      - "{{attributes.port}}"
+      - "-ssl"
+      - "-Tuning"
+      - "123b"
+      - "-nointeractive"

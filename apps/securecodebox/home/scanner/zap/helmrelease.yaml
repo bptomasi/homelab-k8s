@@ -1,0 +1,19 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: zap
+spec:
+  chartRef:
+    kind: OCIRepository
+    name: zap
+  interval: 24h0m0s
+  values:
+    parser:
+      image:
+        tag: 5.1.0
+      ttlSecondsAfterFinished: 10
+    scanner:
+      image:
+        tag: 2.16.1
+      ttlSecondsAfterFinished: 10

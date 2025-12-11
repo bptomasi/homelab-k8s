@@ -1,0 +1,15 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - ./deep-nuclei-prometheus.yaml
+  - ./deep-nuclei-swagger-api.yaml
+  - ./fast-nikto-123b.yaml
+  - ./fast-nuclei-cve.yaml
+  - ./fast-nuclei-exposures.yaml
+  - ./fast-nuclei-misconfig.yaml
+  - ./fast-nuclei-panel.yaml
+  - ./fast-nuclei-tech.yaml
+  - ./fast-nuclei-vuln.yaml
+  - ./sslyze-on-tls.yaml
+  - ./zap-default.yaml

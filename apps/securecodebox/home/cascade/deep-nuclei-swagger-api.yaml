@@ -1,0 +1,31 @@
+---
+apiVersion: cascading.securecodebox.io/v1
+kind: CascadingRule
+metadata:
+  name: deep-nuclei-swagger-api
+  labels:
+    securecodebox.io/invasive: invasive
+    securecodebox.io/intensive: heavy
+    cascading.securecodebox.io/chain: deep-nuclei
+spec:
+  matches:
+    anyOf:
+      - category: "swagger-api"
+      - attributes:
+          template_id: "swagger-api"
+  scanSpec:
+    scanType: nuclei
+    parameters:
+      - "-u"
+      - "{{{attributes.matched_at}}}"
+      - "-tags"
+      - "swagger,openapi,api"
+      - "-severity"
+      - "low,medium,high,critical"
+      - "-exclude-tags"
+      - "dos"
+      - "-follow-redirects"
+      - "-timeout"
+      - "40"
+      - "-rate-limit"
+      - "20"

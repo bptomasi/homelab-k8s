@@ -1,0 +1,31 @@
+---
+apiVersion: cascading.securecodebox.io/v1
+kind: CascadingRule
+metadata:
+  name: deep-nuclei-security-headers
+  labels:
+    securecodebox.io/invasive: non-invasive
+    securecodebox.io/intensive: medium
+    cascading.securecodebox.io/chain: deep-nuclei
+spec:
+  matches:
+    anyOf:
+      - category: "missing-sri"
+      - category: "http-missing-security-headers"
+  scanSpec:
+    scanType: nuclei
+    parameters:
+      - "-u"
+      - "{{location}}"
+      - "-tags"
+      - "security-headers,cors,ssl"
+      - "-severity"
+      - "info,low,medium,high,critical"
+      - "-exclude-tags"
+      - "dos"
+      - "-follow-redirects"
+      - "-timeout"
+      - "40"
+      - "-rate-limit"
+      - "20"
+      - "--verbose"

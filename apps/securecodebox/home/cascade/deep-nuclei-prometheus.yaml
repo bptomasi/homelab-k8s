@@ -1,0 +1,32 @@
+---
+apiVersion: cascading.securecodebox.io/v1
+kind: CascadingRule
+metadata:
+  name: deep-nuclei-prometheus
+  labels:
+    securecodebox.io/invasive: invasive
+    securecodebox.io/intensive: medium
+    cascading.securecodebox.io/chain: deep-nuclei
+spec:
+  matches:
+    anyOf:
+      - category: "prometheus-metrics"
+      - attributes:
+          template_id: "prometheus-metrics"
+  scanSpec:
+    scanType: nuclei
+    parameters:
+      - "-u"
+      - "{{{attributes.matched_at}}}"
+      - "-tags"
+      - "prometheus"
+      - "-severity"
+      - "low,medium,high,critical"
+      - "-exclude-tags"
+      - "dos"
+      - "-follow-redirects"
+      - "-timeout"
+      - "40"
+      - "-rate-limit"
+      - "20"
+      - "--verbose"

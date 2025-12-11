@@ -1,0 +1,110 @@
+---
+apiVersion: cascading.securecodebox.io/v1
+kind: CascadingRule
+metadata:
+  name: fast-nuclei-panel-http
+  labels:
+    securecodebox.io/invasive: non-invasive
+    securecodebox.io/intensive: light
+    cascading.securecodebox.io/chain: fast-nuclei
+spec:
+  matches:
+    anyOf:
+      - category: "Open Port"
+        attributes:
+          state: open
+          protocol: tcp
+          service: http
+      - category: "Open Port"
+        attributes:
+          port: 80
+          state: open
+          protocol: tcp
+      - category: "Open Port"
+        attributes:
+          port: 3000
+          state: open
+          protocol: tcp
+      - category: "Open Port"
+        attributes:
+          port: 8080
+          state: open
+          protocol: tcp
+  scanLabels:
+    scan.securecodebox.io/cascade-from: "{{metadata.name}}"
+  scanSpec:
+    scanType: nuclei
+    parameters:
+      - "-u"
+      - "http://{{$.hostOrIP}}:{{attributes.port}}"
+      - "-tags"
+      - "panel"
+      - "-severity"
+      - "info,low,medium,high,critical"
+      - "-exclude-tags"
+      - "dos"
+      - "-no-interactsh"
+      - "-follow-redirects"
+      - "-timeout"
+      - "10"
+      - "-rate-limit"
+      - "50"
+      - "--verbose"
+---
+apiVersion: cascading.securecodebox.io/v1
+kind: CascadingRule
+metadata:
+  name: fast-nuclei-panel-https
+  labels:
+    securecodebox.io/invasive: non-invasive
+    securecodebox.io/intensive: light
+    cascading.securecodebox.io/chain: fast-nuclei
+spec:
+  matches:
+    anyOf:
+      - category: "Open Port"
+        attributes:
+          state: open
+          protocol: tcp
+          service: https
+      - category: "Open Port"
+        attributes:
+          port: 443
+          state: open
+          protocol: tcp
+      - category: "Open Port"
+        attributes:
+          port: 8443
+          state: open
+          protocol: tcp
+      - category: "Open Port"
+        attributes:
+          port: 9443
+          state: open
+          protocol: tcp
+      - category: "Open Port"
+        attributes:
+          port: 10443
+          state: open
+          protocol: tcp
+  scanLabels:
+    scan.securecodebox.io/cascade-from: "{{metadata.name}}"
+  scanSpec:
+    scanType: nuclei
+    parameters:
+      - "-u"
+      - "http://{{$.hostOrIP}}:{{attributes.port}}"
+      - "-tags"
+      - "panel"
+      - "-severity"
+      - "info,low,medium,high,critical"
+      - "-exclude-tags"
+      - "dos"
+      - "-no-interactsh"
+      - "-follow-redirects"
+      - "-timeout"
+      - "10"
+      - "-rate-limit"
+      - "50"
+      - "--verbose"
+

@@ -1,0 +1,26 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: nuclei
+spec:
+  chartRef:
+    kind: OCIRepository
+    name: nuclei
+  interval: 24h0m0s
+  values:
+    parser:
+      image:
+        tag: 5.1.0
+      ttlSecondsAfterFinished: 10
+    scanner:
+      image:
+        tag: v3.4.10
+      ttlSecondsAfterFinished: 10
+    nucleiTemplateCache:
+      enabled: true
+      accessMode:
+        - ReadWriteOnce
+      schedule: "0 15 * * 1"
+      successfulJobsHistoryLimit: 1
+      failedJobsHistory: 2
