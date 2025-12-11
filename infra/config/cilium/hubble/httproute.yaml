@@ -13,10 +13,10 @@ spec:
     - hubble.minikube
   rules:
     - filters:
-      - type: RequestRedirect
-        requestRedirect:
-          scheme: https
-          statusCode: 301
+        - type: RequestRedirect
+          requestRedirect:
+            scheme: https
+            statusCode: 301
 ---
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
@@ -28,10 +28,10 @@ spec:
     - name: default
       namespace: gateway
       sectionName: https
-  hostnames: 
+  hostnames:
     - hubble.minikube
   rules:
     - backendRefs:
-      - name: hubble-ui
-        port: 80
+        - name: hubble-ui
+          port: 80
 

@@ -51,4 +51,4 @@ spec:
     encryption:
       enabled: true
       type: wireguard
-      nodeEncryption: true 
+      nodeEncryption: true
