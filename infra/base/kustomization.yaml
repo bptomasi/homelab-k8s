@@ -6,6 +6,7 @@ resources:
   - cilium
   - cert-manager
   - local-path-provisioner
+  - istio
   - external-secrets
   - jetstack
   - kyverno
