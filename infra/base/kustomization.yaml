@@ -7,6 +7,7 @@ resources:
   - cert-manager
   - local-path-provisioner
   - istio
+  - prometheus
   - external-secrets
   - jetstack
   - kyverno
