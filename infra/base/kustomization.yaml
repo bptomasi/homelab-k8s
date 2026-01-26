@@ -9,7 +9,7 @@ resources:
   - istio
   - opentelemetry
   - prometheus
-  - jaeger
+  # - jaeger
   - external-secrets
   - jetstack
   - kyverno
