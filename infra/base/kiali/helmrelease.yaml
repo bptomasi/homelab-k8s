@@ -11,7 +11,7 @@ spec:
         kind: HelmRepository
         name: kiali
         namespace: kiali
-  targetInterval: kiali
+  targetRelease: kiali
   interval: 24h
   values:
     cr:
