@@ -9,9 +9,9 @@ resources:
   - istio
   - opentelemetry
   - prometheus
-  - kiali
-  - jaeger
-  - external-secrets
-  - jetstack
-  - kyverno
-  - tetragon
+# - kiali
+# - jaeger
+# - external-secrets
+# - jetstack
+# - kyverno
+# - tetragon
