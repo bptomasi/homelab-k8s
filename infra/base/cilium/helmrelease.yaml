@@ -47,7 +47,7 @@ spec:
       relay:
         enabled: true
       ui:
-        enabled: true
+        enabled: false
     encryption:
       enabled: true
       type: wireguard

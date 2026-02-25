@@ -4,4 +4,4 @@ kind: Kustomization
 resources:
   - cert-manager
   - gateway
-  - cilium
+  # - cilium
