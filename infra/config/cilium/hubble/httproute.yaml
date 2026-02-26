@@ -6,7 +6,7 @@ metadata:
   namespace: kube-system
 spec:
   parentRefs:
-    - name: default
+    - name: waypoint
       namespace: gateway
       sectionName: http
   hostnames:
@@ -25,7 +25,7 @@ metadata:
   namespace: kube-system
 spec:
   parentRefs:
-    - name: default
+    - name: waypoint
       namespace: gateway
       sectionName: https
   hostnames:
