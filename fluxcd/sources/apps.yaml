@@ -13,5 +13,5 @@ spec:
     kind: GitRepository
     name: flux-system
   dependsOn:
-    - name: infra-config
+    - name: infra
       namespace: flux-system
