@@ -16,19 +16,19 @@ spec:
     - name: jetstack-base
       namespace: flux-system
 ---
-#apiVersion: kustomize.toolkit.fluxcd.io/v1
-#kind: Kustomization
-#metadata:
-#  name: version-checker-config
-#  namespace: flux-system
-#spec:
-#  interval: 10m0s
-#  path: ./infra/version-checker/config
-#  prune: true
-#  wait: true
-#  sourceRef:
-#    kind: GitRepository
-#    name: flux-system
-#  dependsOn:
-#    - name: version-checker-base
-#      namespace: flux-system
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: version-checker-config
+  namespace: flux-system
+spec:
+  interval: 10m0s
+  path: ./infra/version-checker/config
+  prune: true
+  wait: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  dependsOn:
+    - name: version-checker-base
+      namespace: flux-system
