@@ -12,6 +12,9 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
+  dependsOn:
+    - name: jetstack-base
+      namespace: flux-system
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
@@ -29,4 +32,3 @@ spec:
   dependsOn:
     - name: cert-manager-base
       namespace: flux-system
-
