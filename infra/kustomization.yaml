@@ -10,4 +10,4 @@ resources:
   - gateway-api
   - prometheus
   - opentelemetry
-  - kiali
+#  - kiali
