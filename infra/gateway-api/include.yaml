@@ -19,7 +19,7 @@ metadata:
   name: gateway-api-config
   namespace: flux-system
 spec:
-  interval: 10m0s
+  interval: 10s
   path: ./infra/gateway-api/config
   prune: true
   wait: true

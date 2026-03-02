@@ -22,7 +22,7 @@ metadata:
   name: cert-manager-config
   namespace: flux-system
 spec:
-  interval: 10m0s
+  interval: 10s
   path: ./infra/cert-manager/config
   prune: true
   wait: true
