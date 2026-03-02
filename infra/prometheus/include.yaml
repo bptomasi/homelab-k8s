@@ -1,0 +1,33 @@
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: prometheus-base
+  namespace: flux-system
+spec:
+  interval: 10m0s
+  path: ./infra/prometheus/base
+  prune: true
+  wait: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+---
+#apiVersion: kustomize.toolkit.fluxcd.io/v1
+#kind: Kustomization
+#metadata:
+#  name: prometheus-config
+#  namespace: flux-system
+#spec:
+#  interval: 10m0s
+#  path: ./infra/prometheus/config
+#  prune: true
+#  wait: true
+#  sourceRef:
+#    kind: GitRepository
+#    name: flux-system
+#  dependsOn:
+#    - name: prometheus-base
+#      namespace: flux-system
+
+
