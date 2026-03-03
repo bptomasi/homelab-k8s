@@ -12,7 +12,7 @@ spec:
         kind: HelmRepository
         name: grafana
         namespace: grafana
-  targetNamespace: grafana-operator
+  targetNamespace: grafana
   interval: 24h0m0s
   values:
     namespaceScope: false 
