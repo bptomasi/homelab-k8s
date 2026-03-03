@@ -5,7 +5,7 @@ metadata:
   name: jetstack-install
   namespace: flux-system
 spec:
-  interval: 10m0s
+  interval: 1h0m0s
   path: ./infra/jetstack/install
   prune: true
   wait: true
