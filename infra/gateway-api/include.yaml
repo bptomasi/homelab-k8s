@@ -2,31 +2,13 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: gateway-api-base
+  name: gateway-api-install
   namespace: flux-system
 spec:
   interval: 10m0s
-  path: ./infra/gateway-api/base
+  path: ./infra/gateway-api/install
   prune: true
   wait: true
   sourceRef:
     kind: GitRepository
     name: flux-system
----
-apiVersion: kustomize.toolkit.fluxcd.io/v1
-kind: Kustomization
-metadata:
-  name: gateway-api-config
-  namespace: flux-system
-spec:
-  interval: 10s
-  path: ./infra/gateway-api/config
-  prune: true
-  wait: true
-  sourceRef:
-    kind: GitRepository
-    name: flux-system
-  dependsOn:
-    - name: gateway-api-base
-      namespace: flux-system
-
