@@ -10,5 +10,6 @@ resources:
   - gateway-api
   - prometheus
   - opentelemetry
+  - grafana
   - version-checker
 #  - kiali
