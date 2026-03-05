@@ -12,4 +12,5 @@ resources:
   - opentelemetry
   - grafana
   - version-checker
+  - aqua
 #  - kiali
