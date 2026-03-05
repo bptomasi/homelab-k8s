@@ -12,6 +12,7 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
+    namespace: flux-system
   dependsOn:
     - name: jetstack-install
       namespace: infra
@@ -29,6 +30,7 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
+    namespace: flux-system
   dependsOn:
     - name: version-checker-install
       namespace: infra
