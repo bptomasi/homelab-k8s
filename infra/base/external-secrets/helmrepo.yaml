@@ -1,9 +1,0 @@
----
-apiVersion: source.toolkit.fluxcd.io/v1
-kind: HelmRepository
-metadata:
-  name: external-secrets
-  namespace: external-secrets
-spec:
-  interval: 240m0s
-  url: https://external-secrets.io/
