@@ -10,8 +10,8 @@ spec:
       chart: trivy
       sourceRef:
         kind: HelmRepository
-        name: trivy
-        namespace: trivy
+        name: aqua
+        namespace: aqua
   targetNamespace: trivy
   interval: 24h0m0s
   values:
