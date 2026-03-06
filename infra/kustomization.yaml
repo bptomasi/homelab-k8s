@@ -13,4 +13,5 @@ resources:
   - grafana
   - version-checker
   - aqua
+  - trivy
 #  - kiali
