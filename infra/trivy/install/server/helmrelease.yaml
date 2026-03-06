@@ -1,0 +1,19 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: server
+  namespace: trivy
+spec:
+  chart:
+    spec:
+      chart: trivy
+      sourceRef:
+        kind: HelmRepository
+        name: trivy
+        namespace: trivy
+  targetNamespace: trivy
+  interval: 24h0m0s
+  values:
+    persistence:
+      size: 1Gi
