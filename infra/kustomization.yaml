@@ -15,4 +15,4 @@ resources:
   - version-checker
   - aqua
   - trivy
-#  - kiali
+  - kiali
