@@ -3,11 +3,12 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   - cilium
+  - gateway-api
   - jetstack
   - cert-manager
   - local-path-provisioner
   - istio
-  - gateway-api
+  - gateway
   - prometheus
   - opentelemetry
   - grafana
