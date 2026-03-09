@@ -6,7 +6,7 @@ metadata:
   namespace: version-checker
 spec:
   parentRefs:
-    - name: waypoint
+    - name: north-south
       namespace: gateway
       sectionName: http
   hostnames:
@@ -25,7 +25,7 @@ metadata:
   namespace: version-checker
 spec:
   parentRefs:
-    - name: waypoint
+    - name: north-south
       namespace: gateway
       sectionName: https
   hostnames:
