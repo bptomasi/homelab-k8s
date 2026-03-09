@@ -20,6 +20,3 @@ spec:
   uninstall:
     disableWait: true
   interval: 24h
-  values:
-    cr:
-      create: true
