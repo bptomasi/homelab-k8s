@@ -12,7 +12,6 @@ resources:
   - prometheus
   - opentelemetry
   - grafana
-  - version-checker
   - aqua
   - trivy
   - kiali
