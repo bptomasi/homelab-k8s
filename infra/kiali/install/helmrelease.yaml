@@ -13,6 +13,12 @@ spec:
         name: kiali
         namespace: kiali
   targetNamespace: kiali
+  install:
+    disableWait: true
+  upgrade:
+    disableWait: true
+  uninstall:
+    disableWait: true
   interval: 24h
   values:
     cr:
