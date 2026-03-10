@@ -2,11 +2,11 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: external-secrets-base
+  name: external-secrets-install
   namespace: flux-system
 spec:
-  interval: 10m0s
-  path: ./infra/external-secrets/base
+  interval: 1h0m0s
+  path: ./infra/external-secrets/install
   prune: true
   wait: true
   sourceRef:
@@ -16,17 +16,17 @@ spec:
 #apiVersion: kustomize.toolkit.fluxcd.io/v1
 #kind: Kustomization
 #metadata:
-#  name: external-secrets-config
+#  name: external-secrets-resources
 #  namespace: flux-system
 #spec:
-#  interval: 10m0s
-#  path: ./infra/external-secrets/config
+#  interval: 30m0s
+#  path: ./infra/external-secrets/resources
 #  prune: true
 #  wait: true
 #  sourceRef:
 #    kind: GitRepository
 #    name: flux-system
 #  dependsOn:
-#    - name: external-secrets-base
+#    - name: external-secrets-resources
 #      namespace: flux-system
 
