@@ -4,4 +4,4 @@ kind: Kustomization
 resources:
   - ns.yaml
   - server
-  - operator
+#  - operator
