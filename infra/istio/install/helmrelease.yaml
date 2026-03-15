@@ -13,3 +13,7 @@ spec:
         name: istio
         namespace: istio-system
   interval: 24h0m0s
+  install:
+    disableWait: true
+  upgrade:
+    disableWait: true
