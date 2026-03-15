@@ -4,4 +4,4 @@ kind: Kustomization
 resources:
   - ns.yaml
   - helmrepo.yaml
-  - operator
+  - helmrelease.yaml

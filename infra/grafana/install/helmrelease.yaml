@@ -15,5 +15,5 @@ spec:
   targetNamespace: grafana
   interval: 24h0m0s
   values:
-    namespaceScope: false 
+    namespaceScope: false
     replicas: 1
