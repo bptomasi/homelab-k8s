@@ -2,8 +2,8 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: grafana-install
-  namespace: flux-system
+  name: install
+  namespace: grafana
 spec:
   interval: 1h0m0s
   path: ./infra/grafana/install
@@ -12,12 +12,13 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
----
+    namespace: flux-system
+#---
 #apiVersion: kustomize.toolkit.fluxcd.io/v1
 #kind: Kustomization
 #metadata:
-#  name: grafana-resources
-#  namespace: flux-system
+#  name: resources
+#  namespace: grafana
 #spec:
 #  interval: 30m0s
 #  path: ./infra/grafana/resources
@@ -26,8 +27,7 @@ spec:
 #  sourceRef:
 #    kind: GitRepository
 #    name: flux-system
+#    namespace: flux-system
 #  dependsOn:
-#    - name: grafana-install
-#      namespace: flux-system
-
-
+#    - name: install
+#      namespace: grafana
