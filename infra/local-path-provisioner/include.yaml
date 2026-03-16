@@ -2,8 +2,8 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: local-path-provisioner-install
-  namespace: flux-system
+  name: install
+  namespace: local-path-storage
 spec:
   interval: 1h0m0s
   path: ./infra/local-path-provisioner/install
@@ -12,3 +12,4 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
+    namespace: flux-system
