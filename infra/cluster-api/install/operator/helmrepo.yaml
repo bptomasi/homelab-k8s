@@ -1,0 +1,9 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+  name: cluster-api
+  namespace: cluster-api
+spec:
+  interval: 24h0m0s
+  url: https://kubernetes-sigs.github.io/cluster-api-operator
