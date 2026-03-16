@@ -2,8 +2,8 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: kiali-install
-  namespace: flux-system
+  name: install
+  namespace: kiali
 spec:
   interval: 1h0m0s
   path: ./infra/kiali/install
@@ -12,22 +12,4 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
----
-#apiVersion: kustomize.toolkit.fluxcd.io/v1
-#kind: Kustomization
-#metadata:
-#  name: kiali-config
-#  namespace: flux-system
-#spec:
-#  interval: 10m0s
-#  path: ./infra/kiali/config
-#  prune: true
-#  wait: true
-#  sourceRef:
-#    kind: GitRepository
-#    name: flux-system
-#  dependsOn:
-#    - name: kiali-base
-#      namespace: flux-system
-
-
+    namespace: flux-system
