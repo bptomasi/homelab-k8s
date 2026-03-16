@@ -2,8 +2,8 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: cert-manager-install
-  namespace: flux-system
+  name: install
+  namespace: cert-manager
 spec:
   interval: 1h0m0s
   path: ./infra/cert-manager/install
@@ -13,14 +13,14 @@ spec:
     kind: GitRepository
     name: flux-system
   dependsOn:
-    - name: jetstack-install
-      namespace: flux-system
+    - name: install
+      namespace: jetstack
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: cert-manager-resources
-  namespace: flux-system
+  name: resources
+  namespace: cert-manager
 spec:
   interval: 30m0s
   path: ./infra/cert-manager/resources
@@ -30,5 +30,5 @@ spec:
     kind: GitRepository
     name: flux-system
   dependsOn:
-    - name: cert-manager-install
-      namespace: flux-system
+    - name: install
+      namespace: cert-manager
