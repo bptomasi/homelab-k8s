@@ -1,0 +1,27 @@
+---
+apiVersion: opentelemetry.io/v1beta1
+kind: OpenTelemetryCollector
+metadata:
+  name: gateway
+  namespace: opentelemetry
+spec:
+  mode: deployment
+  config:
+    receivers:
+      otlp:
+        protocols:
+          grpc:
+            endpoint:
+          http:
+            endpoint:
+    processors:
+      memory_limiter:
+
+    exporters:
+
+    service:
+      pipelines:
+        traces:
+          receivers:
+          processors:
+          exporters:

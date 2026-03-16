@@ -1,0 +1,77 @@
+---
+apiVersion: opentelemetry.io/v1beta1
+kind: OpenTelemetryCollector
+metadata:
+  name: agent
+  namespace: opentelemetry
+spec:
+  mode: daemonset
+  config:
+
+    #
+    #
+    #
+    #
+    receivers:
+      collection_interval: 1m
+
+      #
+      #
+      #
+      #
+      hostmetrics:
+        scrapers:
+          cpu:
+          disk:
+          filesystem:
+          load:
+          memory:
+          network:
+          processes:
+          paging:
+
+      #
+      #
+      #
+      #
+      kubeletstats:
+
+      #
+      #
+      #
+      #
+      filelog:
+        include:
+          - /var/log/pods/*/*/*.log    
+        exclude:
+          - /var/log/pods/*/otel # ??
+
+
+      #
+      #
+      #
+      #
+      otlp:
+
+    #
+    #
+    #
+    #
+    processors:
+
+    #
+    #
+    #
+    #
+    exporters:
+
+    #
+    #
+    #
+    #
+    service:
+      pipelines:
+        metrics:
+          receivers: [hostmetrics]
+        logs:
+          receivers: [hostmetrics]
