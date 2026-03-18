@@ -15,5 +15,4 @@ resources:
   - aqua
   - trivy
   - kiali
-  - cluster-api
   - kubevirt
