@@ -16,3 +16,4 @@ resources:
   - trivy
   - kiali
   - cluster-api
+  - kubevirt

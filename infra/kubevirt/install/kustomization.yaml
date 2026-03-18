@@ -1,0 +1,13 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - kubevirt-operator-v1.6.1.yaml
+  - kubevirt-cr-v1.6.1.yaml
+
+patchesStrategicMerge:
+  - kubevirt-cr-customize-patch.yaml
+
+replicas:
+  - name: virt-operator
+    count: 1
